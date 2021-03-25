@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 필수 -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		//$('#dialog').dialog();   페이지가 load 되자 마자 
+		$('#datepicke').datepicker({dateFormat: "yy년mm월dd"});
+		
+		
+		$('#dialog').dialog({
+			autoOpen: false,
+			show:{effect:"blind",duration:2000},
+			hide:{effect:"explode",duration:1000},
+			buttons:{
+					"submit" :function(){
+						let eventname=$('#evnet_name').val();
+						let eventdate=$('#evnet_date').val();
+						// 내용을 부모창 전달
+						// 태그를 생성(Fullname)
+						$('<h3></h3>').html(eventname + " : " + eventdate ).appendTo("#output")
+						$('#dialog').dialog('close');
+					}
+			},
+			"reset":function(){
+				$('#evnet_name').val("");
+				$('#evnet_date').val("");
+			},
+			"reset":function(){
+
+			},
+
+			resizeable: false,
+			modal:true // 팝업을 닫기 전까지는 부모창 접근 불가.
+		})
+		
+		$('#open_button').click(function(){
+			$('#dialog').dialog("open");  // autoOpen: ture
+			
+		})
+		
+		
+	})
+	
+</script>
+</head>
+<body>
+
+		<h3 id="open_button">일정생성</h3>
+		<hr>
+		<div id="output"></div>
+		<!-- dialog -->
+		<div id="dialog" title="일정관리">
+			<H3>일정만들기</H3>
+			<label for="event_name">일정이름</label>
+			<input type="text" id="event_name"> 
+			<br>
+			<label for="event_name">일정날짜</label>
+			<input type="text" id="event_date">
+			 <br>
+		</div>
+</body>
+</html>

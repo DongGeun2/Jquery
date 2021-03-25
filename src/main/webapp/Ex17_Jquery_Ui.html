@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 필수 -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#datepiker').datepicker(
+			{
+				dateFormat: "yy-mm-dd",
+				numberOfMonths: 1,
+				onSelect: function(date){alert("onSelect: " +  date);},
+				onClose: function(date){
+					console.log(typeof(date));
+					let currentdate = $('#datepicke').datepicker('getDate');
+					console.log(typeof(currentdate));
+					let date2 = new Date(currentdate);
+					alert(date2.getFullYear() + '/ ' + date2.getDate());
+				}
+				
+			}		
+		);	
+	
+	
+	})
+	
+	
+</script>
+</head>
+<body>
+	<p>
+		Date : <input type="text" id="datepiker">
+	</p>
+	
+</body>
+</html>
